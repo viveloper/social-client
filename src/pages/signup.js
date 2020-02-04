@@ -10,7 +10,8 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import AppIcon from '../images/icon.png';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { signupUser, logoutUser } from '../redux/actions/userAction';
 
 const styles = {
   form: {
@@ -44,9 +45,7 @@ class signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    handle: '',
-    loading: false,
-    errors: {}
+    handle: ''
   };
 
   handleSubmit = e => {
@@ -60,23 +59,7 @@ class signup extends Component {
       confirmPassword: this.state.confirmPassword,
       handle: this.state.handle
     };
-    axios
-      .post('/signup', newUserData)
-      .then(res => {
-        console.log(res.data);
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-        this.setState({
-          loading: false
-        });
-        this.props.history.push('/');
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          errors: err.response.data,
-          loading: false
-        });
-      });
+    this.props.signupUser(newUserData, this.props.history);
   };
 
   handleChange = e => {
@@ -86,8 +69,10 @@ class signup extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { loading, errors } = this.state;
+    const {
+      classes,
+      ui: { loading, errors }
+    } = this.props;
     return (
       <Grid container className={classes.form}>
         <Grid item sm></Grid>
@@ -175,7 +160,24 @@ class signup extends Component {
 }
 
 signup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  ui: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(signup);
+const mapStateToProps = state => ({
+  user: state.user,
+  ui: state.ui
+});
+
+const mapDispatchToProps = dispatch => ({
+  signupUser: (newUserData, history) => {
+    dispatch(signupUser(newUserData, history));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(signup));
