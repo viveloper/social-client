@@ -13,31 +13,25 @@ import AppIcon from '../images/icon.png';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userAction';
 
-const styles = {
-  form: {
-    textAlign: 'center'
-  },
-  image: {
-    margin: '20px auto'
-  },
-  pageTitle: {
-    margin: '10px auto'
-  },
-  textField: {
-    margin: '10px auto'
-  },
-  button: {
-    marginTop: 20,
-    position: 'relative'
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: 10
-  },
-  progress: {
-    position: 'absolute'
-  }
+const styles = theme => {
+  const {
+    form,
+    image,
+    pageTitle,
+    textField,
+    button,
+    customError,
+    progress
+  } = theme;
+  return {
+    form,
+    image,
+    pageTitle,
+    textField,
+    button,
+    customError,
+    progress
+  };
 };
 
 class login extends Component {

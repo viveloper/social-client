@@ -12,14 +12,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 import MyButton from './MyButton';
 
-const styles = {
-  textField: {
-    margin: '10px auto 10px auto'
-  },
+const styles = theme => ({
+  textField: theme.textField,
   button: {
     float: 'right'
   }
-};
+});
 
 class EditDetails extends Component {
   state = {
