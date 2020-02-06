@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import userReducer from './reducers/userReducer';
 import dataReducer from './reducers/dataReducer';
 import uiReducer from './reducers/uiReducer';
+import postScreamReducer from './reducers/postScreamReducer';
 
 const initialState = {};
 
@@ -11,7 +12,8 @@ const middlewares = [thunk];
 const reducers = combineReducers({
   user: userReducer,
   data: dataReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  postScream: postScreamReducer
 });
 
 const store = createStore(

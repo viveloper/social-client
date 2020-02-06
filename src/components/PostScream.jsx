@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -14,17 +13,24 @@ import CloseIcon from '@material-ui/icons/Close';
 import MyButton from './MyButton';
 
 import { postScream } from '../redux/actions/dataAction';
-import { SET_ERRORS } from '../redux/types';
+import {
+  OPEN_POST_SCREAM,
+  CLOSE_POST_SCREAM,
+  CLEAR_ERRORS,
+  SET_POST_SCREAM_BODY
+} from '../redux/types';
 
 const styles = theme => ({
   textField: theme.textField,
   closeButton: {
     position: 'absolute',
-    left: '90%',
-    top: '10%'
+    left: '91%',
+    top: '6%'
   },
   submitButton: {
-    position: 'relative'
+    position: 'relative',
+    float: 'right',
+    marginTop: 10
   },
   progressSpinner: {
     position: 'absolute'
@@ -32,56 +38,37 @@ const styles = theme => ({
 });
 
 class PostScream extends Component {
-  state = {
-    open: false,
-    body: '',
-    errors: {}
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.ui.errors) {
-      this.setState({
-        errors: nextProps.ui.errors
-      });
-    }
-    if (!nextProps.ui.errors && !nextProps.ui.loading) {
-      this.setState({ body: '' });
-      this.handleClose();
-    }
-  }
-
   handleOpen = () => {
-    this.setState({ open: true });
+    this.props.openPostScream();
   };
 
   handleClose = () => {
-    this.setState({ open: false, errors: {} });
+    this.props.closePostScream();
+    this.props.clearErrors();
   };
 
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.props.setPostScreamBody(e.target.value);
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.postScream({ body: this.state.body });
+    this.props.postScream({ body: this.props.body });
   };
 
   render() {
     const {
       classes,
-      ui: { loading }
+      ui: { loading, errors },
+      isPostScreamOpened
     } = this.props;
-    const { errors } = this.state;
     return (
       <>
         <MyButton onClick={this.handleOpen} tip="Post a Scream!">
           <AddIcon color="primary" />
         </MyButton>
         <Dialog
-          open={this.state.open}
+          open={isPostScreamOpened}
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
@@ -133,17 +120,30 @@ class PostScream extends Component {
 }
 
 const mapStateToProps = state => ({
-  ui: state.ui
+  ui: state.ui,
+  isPostScreamOpened: state.postScream.isPostScreamOpened,
+  body: state.postScream.body
 });
 
 const mapDispatchToProps = dispatch => ({
   postScream: newScream => {
     dispatch(postScream(newScream));
   },
-  setErrors: errors => {
+  clearErrors: () => {
     dispatch({
-      type: SET_ERRORS,
-      payload: errors
+      type: CLEAR_ERRORS
+    });
+  },
+  openPostScream: () => {
+    dispatch({ type: OPEN_POST_SCREAM });
+  },
+  closePostScream: () => {
+    dispatch({ type: CLOSE_POST_SCREAM });
+  },
+  setPostScreamBody: value => {
+    dispatch({
+      type: SET_POST_SCREAM_BODY,
+      payload: value
     });
   }
 });

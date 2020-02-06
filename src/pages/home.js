@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
 import { connect } from 'react-redux';
 // components
 import Scream from '../components/Scream';

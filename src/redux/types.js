@@ -7,6 +7,7 @@ export const LOADING_USER = 'LOADING_USER';
 // UI reducer types
 export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
+export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOADING_DATA = 'LOADING_DATA';
 
@@ -17,3 +18,8 @@ export const LIKE_SCREAM = 'LIKE_SCREAM';
 export const UNLIKE_SCREAM = 'UNLIKE_SCREAM';
 export const DELETE_SCREAM = 'DELETE_SCREAM';
 export const POST_SCREAM = 'POST_SCREAM';
+
+// PostScream reducer types
+export const OPEN_POST_SCREAM = 'OPEN_POST_SCREAM';
+export const CLOSE_POST_SCREAM = 'CLOSE_POST_SCREAM';
+export const SET_POST_SCREAM_BODY = 'SET_POST_SCREAM_BODY';
