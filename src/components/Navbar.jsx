@@ -8,6 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
 import MyButton from './MyButton';
 import { connect } from 'react-redux';
+import PostScream from './PostScream';
 
 class Navbar extends Component {
   render() {
@@ -16,9 +17,7 @@ class Navbar extends Component {
       return (
         <AppBar>
           <Toolbar className="nav-container">
-            <MyButton tip="Post a scream!">
-              <AddIcon />
-            </MyButton>
+            <PostScream />
             <Link to="/">
               <MyButton tip="Home">
                 <HomeIcon />
