@@ -10,15 +10,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
-import MyButton from './MyButton';
+import MyButton from '../MyButton';
 
-import { postScream } from '../redux/actions/dataAction';
+import { postScream } from '../../redux/actions/dataAction';
 import {
   OPEN_POST_SCREAM,
   CLOSE_POST_SCREAM,
   CLEAR_ERRORS,
   SET_POST_SCREAM_BODY
-} from '../redux/types';
+} from '../../redux/types';
 
 const styles = theme => ({
   textField: theme.textField,

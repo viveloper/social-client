@@ -14,8 +14,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import { connect } from 'react-redux';
-import { uploadImage, logoutUser } from '../redux/actions/userAction';
-import MyButton from './MyButton';
+import { uploadImage, logoutUser } from '../../redux/actions/userAction';
+import MyButton from '../MyButton';
 
 const styles = theme => ({
   paper: theme.paper,

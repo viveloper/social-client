@@ -12,7 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
 
-import MyButton from './MyButton';
+import MyButton from '../MyButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
 import LikeButton from './LikeButton';

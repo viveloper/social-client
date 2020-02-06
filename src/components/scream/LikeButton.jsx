@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MyButton from './MyButton';
+import MyButton from '../MyButton';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataAction';
+import { likeScream, unlikeScream } from '../../redux/actions/dataAction';
 
 import { withStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import { getScream } from '../redux/actions/dataAction';
+import { getScream } from '../../redux/actions/dataAction';
 
 class LikeButton extends Component {
   likedScream = () => {
