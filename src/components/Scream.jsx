@@ -11,10 +11,11 @@ import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataAction';
+
 import MyButton from './MyButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
+import LikeButton from './LikeButton';
 
 const styles = {
   card: {
@@ -32,27 +33,6 @@ const styles = {
 };
 
 class Scream extends Component {
-  likedScream = () => {
-    if (
-      this.props.user.likes &&
-      this.props.user.likes.find(
-        like => like.screamId === this.props.scream.screamId
-      )
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  likeScream = () => {
-    this.props.likeScream(this.props.scream.screamId);
-  };
-
-  unlikeScream = () => {
-    this.props.unlikeScream(this.props.scream.screamId);
-  };
-
   render() {
     dayjs.extend(relativeTime);
     const {
@@ -71,22 +51,6 @@ class Scream extends Component {
         credentials: { handle }
       }
     } = this.props;
-
-    const likeButton = !authenticated ? (
-      <MyButton tip="Like">
-        <Link to="/login">
-          <FavoriteBorder color="primary" />
-        </Link>
-      </MyButton>
-    ) : this.likedScream() ? (
-      <MyButton tip="Undo like" onClick={this.unlikeScream}>
-        <FavoriteIcon color="primary" />
-      </MyButton>
-    ) : (
-      <MyButton tip="Like" onClick={this.likeScream}>
-        <FavoriteBorder color="primary" />
-      </MyButton>
-    );
 
     const deleteButton =
       authenticated && userHandle === handle ? (
@@ -114,7 +78,7 @@ class Scream extends Component {
             {dayjs(createdAt).fromNow()}
           </Typography>
           <Typography variant="body1">{body}</Typography>
-          {likeButton}
+          <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
@@ -131,16 +95,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapDispatchToProps = dispatch => ({
-  likeScream: screamId => {
-    dispatch(likeScream(screamId));
-  },
-  unlikeScream: screamId => {
-    dispatch(unlikeScream(screamId));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Scream));
+export default connect(mapStateToProps)(withStyles(styles)(Scream));

@@ -13,9 +13,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import CloseIcon from '@material-ui/icons/Close';
+import ChatIcon from '@material-ui/icons/Chat';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
 
 import { getScream } from '../redux/actions/dataAction';
+import LikeButton from './LikeButton';
 
 const styles = theme => ({
   profileImage: {
@@ -24,7 +26,10 @@ const styles = theme => ({
     borderRadius: '50%',
     objectFit: 'cover'
   },
-  expandButton: theme.expandButton,
+  expandButton: {
+    position: 'absolute',
+    left: '90%'
+  },
   closeButton: {
     position: 'absolute',
     left: '90%'
@@ -35,6 +40,11 @@ const styles = theme => ({
   invisibleSeparator: {
     border: 'none',
     margin: 4
+  },
+  spinnerDiv: {
+    textAlign: 'center',
+    marginTop: 0,
+    marginBotton: 50
   }
 });
 
@@ -67,7 +77,9 @@ class ScreamDialog extends Component {
     const { open } = this.state;
 
     const dialogMarkup = loading ? (
-      <CircularProgress size={200} />
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={110} thickness={2} />
+      </div>
     ) : (
       <Grid container spacing={5}>
         <Grid item sm={5}>
@@ -88,6 +100,12 @@ class ScreamDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
+          <LikeButton screamId={screamId} />
+          <span>{likeCount} likes</span>
+          <MyButton tip="comments">
+            <ChatIcon color="primary" />
+          </MyButton>
+          <span>{commentCount} comments</span>
         </Grid>
       </Grid>
     );

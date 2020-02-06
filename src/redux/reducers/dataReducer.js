@@ -38,9 +38,11 @@ export default function(state = initialState, action) {
       const newScreams = state.screams.map(scream =>
         scream.screamId === action.payload.screamId ? action.payload : scream
       );
+      const newScream = action.payload;
       return {
         ...state,
-        screams: newScreams
+        screams: newScreams,
+        scream: newScream
       };
     case DELETE_SCREAM:
       const targetScreamId = action.payload;
