@@ -22,6 +22,9 @@ import AuthRoute from './utils/AuthRoute';
 
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL =
+  'https://us-central1-viveloper-social.cloudfunctions.net/api';
+
 const token = localStorage.getItem('FBIdToken');
 if (token) {
   const decodedToken = jwtDecode(token);
