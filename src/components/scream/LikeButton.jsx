@@ -4,20 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { likeScream, unlikeScream } from '../../redux/actions/dataAction';
 
-import { withStyles } from '@material-ui/core/styles';
-import dayjs from 'dayjs';
-
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-import { getScream } from '../../redux/actions/dataAction';
 
 class LikeButton extends Component {
   likedScream = () => {

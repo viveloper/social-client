@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import AppIcon from '../images/icon.png';
 import { connect } from 'react-redux';
-import { signupUser, logoutUser } from '../redux/actions/userAction';
+import { signupUser } from '../redux/actions/userAction';
 
 const styles = theme => ({
   form: theme.form,
