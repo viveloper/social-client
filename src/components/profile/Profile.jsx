@@ -16,6 +16,7 @@ import CalendarToday from '@material-ui/icons/CalendarToday';
 import { connect } from 'react-redux';
 import { uploadImage, logoutUser } from '../../redux/actions/userAction';
 import MyButton from '../MyButton';
+import ProfileSkeleton from './ProfileSkeleton';
 
 const styles = theme => ({
   paper: theme.paper,
@@ -51,7 +52,7 @@ class Profile extends Component {
     } = this.props;
 
     if (loading) {
-      return <p>loading...</p>;
+      return <ProfileSkeleton />;
     } else {
       if (authenticated) {
         return (
