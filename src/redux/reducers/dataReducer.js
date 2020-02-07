@@ -39,7 +39,7 @@ export default function(state = initialState, action) {
       const newScreams = state.screams.map(scream =>
         scream.screamId === action.payload.screamId ? action.payload : scream
       );
-      const newScream = action.payload;
+      const newScream = { ...state.scream, ...action.payload };
       return {
         ...state,
         screams: newScreams,
@@ -60,12 +60,18 @@ export default function(state = initialState, action) {
         screams: [action.payload, ...state.screams]
       };
     case SUBMIT_COMMENT:
+      const updatedScream = {
+        ...state.scream,
+        commentCount: state.scream.commentCount + 1,
+        comments: [action.payload, ...state.scream.comments]
+      };
+      const updatedScreams = state.screams.map(scream =>
+        scream.screamId === action.payload.screamId ? updatedScream : scream
+      );
       return {
         ...state,
-        scream: {
-          ...state.scream,
-          comments: [action.payload, ...state.scream.comments]
-        }
+        scream: updatedScream,
+        screams: updatedScreams
       };
     default:
       return state;
