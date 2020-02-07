@@ -15,9 +15,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import ChatIcon from '@material-ui/icons/Chat';
 import UnfoldMore from '@material-ui/icons/UnfoldMore';
 
-import { getScream } from '../../redux/actions/dataAction';
+import { getScream, clearErrors } from '../../redux/actions/dataAction';
 import LikeButton from './LikeButton';
 import Comments from './Comments';
+import CommentForm from './CommentForm';
 
 const styles = theme => ({
   invisibleSeparator: theme.invisibleSeparator,
@@ -56,6 +57,7 @@ class ScreamDialog extends Component {
   };
   handleClose = () => {
     this.setState({ open: false });
+    this.props.clearErrors();
   };
   render() {
     const {
@@ -107,6 +109,7 @@ class ScreamDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
+        <CommentForm screamId={screamId} />
         <Comments comments={comments} />
       </Grid>
     );
@@ -145,6 +148,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getScream: screamId => {
     dispatch(getScream(screamId));
+  },
+  clearErrors: () => {
+    dispatch(clearErrors());
   }
 });
 
