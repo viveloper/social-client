@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
-import Notifications from '@material-ui/icons/Notifications';
+import Notifications from './Notifications';
 import MyButton from '../MyButton';
 import { connect } from 'react-redux';
 import PostScream from '../scream/PostScream';
@@ -22,9 +22,7 @@ class Navbar extends Component {
                 <HomeIcon />
               </MyButton>
             </Link>
-            <MyButton tip="Notifications">
-              <Notifications />
-            </MyButton>
+            <Notifications />
           </Toolbar>
         </AppBar>
       );

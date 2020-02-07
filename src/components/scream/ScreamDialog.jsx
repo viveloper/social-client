@@ -54,9 +54,7 @@ class ScreamDialog extends Component {
     newPath: ''
   };
   componentDidMount() {
-    console.log('ScreamDialog');
     if (this.props.openDialog) {
-      console.log('ScreamDialog open');
       this.handleOpen();
     }
   }

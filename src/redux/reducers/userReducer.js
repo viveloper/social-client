@@ -4,7 +4,8 @@ import {
   SET_UNAUTHENTICATED,
   LOADING_USER,
   LIKE_SCREAM,
-  UNLIKE_SCREAM
+  UNLIKE_SCREAM,
+  MARK_NOTIFICATIONS_READ
 } from '../types';
 
 const initialState = {
@@ -52,6 +53,14 @@ export default function(state = initialState, action) {
         likes: state.likes.filter(
           like => like.screamId !== action.payload.screamId
         )
+      };
+    case MARK_NOTIFICATIONS_READ:
+      return {
+        ...state,
+        notifications: state.notifications.map(notification => ({
+          ...notification,
+          read: true
+        }))
       };
     default:
       return state;
