@@ -25,4 +25,11 @@ const store = createStore(
   )
 );
 
+// // for deploy
+// const store = createStore(
+//   reducers,
+//   initialState,
+//   applyMiddleware(...middlewares)
+// );
+
 export default store;
